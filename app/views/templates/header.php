@@ -73,7 +73,7 @@
                                   <li><a href="<?= BASEURL; ?>/services">Pelayanan</a></li>
                                   <li><a href="<?= BASEURL; ?>/car-without-sidebar">Rental Mobil</a></li>
                                   <li><a href="<?= BASEURL; ?>/profil">Profil</a></li>
-                                  <li><a href="<?= BASEURL; ?>/login">Masuk</a></li>
+                                  <li><a href="<?= BASEURL; ?>/masuk">Masuk</a></li>
                               </ul>
                           </nav>
                       </div>

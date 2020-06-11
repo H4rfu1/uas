@@ -82,5 +82,11 @@ class Akun_model {
         $this->db->bind('keyword', "%$keyword%");
         return $this->db->resultSet();
     }
+    public function getAkunByEmailOrUsername($masukan)
+    {
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE email=:masukan or username=:masukan');
+        $this->db->bind('masukan', $masukan);
+        return $this->db->single();
+    }
 
 }
