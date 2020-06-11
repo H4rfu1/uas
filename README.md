@@ -5,7 +5,8 @@
 [![Build Status][travis-image]][travis-url]
 [![Downloads Stats][npm-downloads]][npm-url]
 
-UAS website programing Universitas Jember.
+UAS website programing
+Fasilkom, Universitas Jember.
 
 ![](header.png)
 
