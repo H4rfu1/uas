@@ -11,7 +11,9 @@ class Masuk extends Controller {
     }
     public function auth()
     {
+
         //Memulai Session Untuk Penggunaan Data Login
+        Session_destroy();
         session_start();
         if(isset($_POST['login'])){
         //Inialisasi Kolom
@@ -23,8 +25,8 @@ class Masuk extends Controller {
           //Verifikasi Email & Password
           if($masukan == $result['email']){
               if($pass == $result['password']){
-                  $_SESSION['nama'] = $result['nama'];
-                  $_SESSION['level'] = $result['level'];
+                  $_SESSION['id'] = $result['id'];
+                  $_SESSION['level'] = $result['role'];
                   echo 'login sukses';
                   // header('Location: ' . BASEURL . '/mahasiswa');
               }else{
@@ -35,8 +37,8 @@ class Masuk extends Controller {
               }
           }else if($masukan == $result['username']){
               if($pass == $result['password']){
-                  $_SESSION['nama'] = $result['nama'];
-                  $_SESSION['level'] = $result['level'];
+                  $_SESSION['id'] = $result['id'];
+                  $_SESSION['level'] = $result['role'];
                   echo 'login sukses';
               }else{
                 Flasher::setFlash('password', 'yang anda masukan salah', 'danger');

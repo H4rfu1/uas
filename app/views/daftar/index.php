@@ -19,33 +19,47 @@
   <!--== Login Page Content Start ==-->
   <section id="lgoin-page-wrap" class="section-padding">
       <div class="container">
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-3 ">
+              </div>
+              <div class="col-lg-6 ">
+                <?php Flasher::flash(); ?>
+              </div>
+          </div>
           <div class="row">
               <div class="col-lg-5 col-md-8 m-auto">
                 <div class="login-page-content">
                   <div class="login-form">
                     <h3>Buat akun baru</h3>
-            <form action="<?= BASEURL; ?>/daftar/tambahAkun">
+            <form action="<?= BASEURL; ?>/daftar/tambahAkun" method="post" enctype="multipart/form-data">
               <div class="name">
                 <div class="row">
                   <div class="col-md-6">
-                    <input type="text" placeholder="Nama Awal">
+                    <input type="text" placeholder="Nama Awal" name="nm_dpan">
                   </div>
                   <div class="col-md-6">
-                    <input type="text" placeholder="Nama Akhir">
+                    <input type="text" placeholder="Nama Akhir" name="nm_blakang">
                   </div>
                 </div>
               </div>
               <div class="username">
-                <input type="email" placeholder="Email">
+                <input type="text" placeholder="Username" name="username">
+              </div>
+              <div class="username">
+                <input type="email" placeholder="Email" name="email">
               </div>
               <div class="password">
-                <input type="password" placeholder="Kata Sandi">
+                <input type="password" placeholder="Kata Sandi" name="password">
                               </div>
-                              <div class="username">
-                <input type="text" placeholder="Nomor KTP">
+              <div class="username">
+                <input type="text" placeholder="Nomor KTP" name="no_ktp">
+              </div>
+              <div class="username">
+                <input type="file" name="image" accept="image/*">
               </div>
               <div class="log-btn">
-                <button type="submit"><i class="fa fa-check-square"></i> Daftar</button>
+                <button type="submit" name="daftar"><i class="fa fa-check-square"></i> Daftar</button>
               </div>
             </form>
                   </div>

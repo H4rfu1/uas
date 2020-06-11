@@ -22,18 +22,20 @@ class Akun_model {
         return $this->db->single();
     }
 
-    public function tambahDataAkun($data)
+    public function tambahDataAkun($data,$image)
     {
-        $query = "INSERT INTO mahasiswa
+        $query = "INSERT INTO akun
                     VALUES
-                  ('', :nama, :nrp, :email, :jurusan)";
+                  ('', 2, :username, :email, :password, :nm_dpan, :nm_blakang, :no_ktp, :image)";
 
         $this->db->query($query);
-        $this->db->bind('nama', $data['nama']);
-        $this->db->bind('nrp', $data['nrp']);
+        $this->db->bind('username', $data['username']);
         $this->db->bind('email', $data['email']);
-        $this->db->bind('jurusan', $data['jurusan']);
-
+        $this->db->bind('password', $data['password']);
+        $this->db->bind('nm_dpan', $data['nm_dpan']);
+        $this->db->bind('nm_blakang', $data['nm_blakang']);
+        $this->db->bind('no_ktp', $data['no_ktp']);
+        $this->db->bind('image', $image);
         $this->db->execute();
 
         return $this->db->rowCount();
