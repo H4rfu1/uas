@@ -1,5 +1,5 @@
-# Product Name
-> Short blurb about what your product does.
+# Cardoor
+> Website for car rental.
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
