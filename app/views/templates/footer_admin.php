@@ -1,4 +1,4 @@
-<div class="clearfix">...</div>
+<div class="clearfix"></div>
     </div>
     <!-- End of Content Wrapper -->
 
@@ -31,7 +31,25 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="<?= BASEURL; ?>/admin/logout">Logout</a>
+          <a class="btn btn-warning" href="<?= BASEURL; ?>/admin/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- block Modal-->
+  <div class="modal fade" id="blockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you sure to block?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "block" below if you are block this user.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-warning" href="<?= BASEURL; ?>/admin/block/">block</a>
         </div>
       </div>
     </div>
@@ -53,6 +71,17 @@
   <!-- Page level custom scripts -->
   <script src="<?= BASEURL; ?>/assets/js/demo/chart-area-demo.js"></script>
   <script src="<?= BASEURL; ?>/assets/js/demo/chart-pie-demo.js"></script>
+  <script type="text/javascript">
+  $('#blockModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      var id = button.data('id') ; // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this);
+      var url = $("#blockModal .modal-footer a").attr('href');
+      $("#blockModal .modal-footer a").attr('href', url + id);
+      })
+  </script>
 
 </body>
 

@@ -4,13 +4,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Pemesanan</h6>
-              <a href="#" class="btn btn-success btn-icon-split">
-                <span class="icon text-white-50">
-                  <i class="fas fa-plus"></i>
-                </span>
-                <span class="text">Tambah Data</span>
-              </a>
+              <h6 class="m-0 font-weight-bold text-warning">Data Pemesanan</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -241,6 +235,27 @@
                 </table>
               </div>
             </div>
+            <!-- Page Pagination Start -->
+            <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-12">
+                <div class="page-pagi">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+              </div>
+            </div>
+            </div>
+            <!-- Page Pagination End -->
           </div>
 
         </div>
