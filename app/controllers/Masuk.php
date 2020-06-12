@@ -43,9 +43,15 @@ class Masuk extends Controller {
                     header('Location: ' . BASEURL . '/admin');
                     exit;
                   }else{
-                    $_SESSION['role'] = 2;
-                    header('Location: ' . BASEURL . '/profil');
-                    exit;
+                    if($result['status'] == 'aktif'){
+                      $_SESSION['role'] = 2;
+                      header('Location: ' . BASEURL . '/profil');
+                      exit;
+                    }else{
+                      Flasher::setFlash('akun anda', 'terblokir atau tidak aktif, hubungi admin!', 'danger');
+                      header('Location: ' . BASEURL . '/masuk');
+                      exit;
+                    }
                   }
               }else{
                 Flasher::setFlash('password', 'yang anda masukan salah', 'danger');

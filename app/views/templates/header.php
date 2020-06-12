@@ -10,6 +10,11 @@
 
     <title><?= $data['judul']; ?></title>
 
+    <!-- Custom fonts for this template -->
+    <link href="<?= BASEURL; ?>/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+
     <!--=== Bootstrap CSS ===-->
     <link href="<?= BASEURL; ?>/assets/css/bootstrap.min.css" rel="stylesheet">
     <!--=== Vegas Min CSS ===-->
@@ -74,6 +79,7 @@
                                   <li <?php if($data['judul']=='Daftar Mobil') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/listcar">Rental Mobil</a></li>
                                   <?php if(isset($_SESSION['role'])): ?>
                                     <li <?php if($data['judul']=='Profil') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/profil">Profil</a></li>
+                                    <li <?php if($data['judul']=='Masuk') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/profil/logout">keluar</a></li>
                                   <?php endif; ?>
                                   <?php if(!isset($_SESSION['role'])): ?>
                                     <li <?php if($data['judul']=='Masuk') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/masuk">Masuk</a></li>

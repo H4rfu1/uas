@@ -1,7 +1,7 @@
 <?php
 
-class Mobil_model {
-    private $table = 'mobil';
+class Booking_model {
+    private $table = 'transaksi';
     private $db;
 
     public function __construct()
@@ -9,41 +9,39 @@ class Mobil_model {
         $this->db = new Database;
     }
 
-    public function getAllMobil()
+    public function getAllBooking()
     {
-        $this->db->query('SELECT * FROM mobil m join tipe_mobil tm on m.tipe = tm.id');
+        $this->db->query('SELECT * FROM ' . $this->table);
         return $this->db->resultSet();
     }
 
-    public function getMobilById($id)
+    public function getBookingById($id)
     {
         $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id');
         $this->db->bind('id', $id);
         return $this->db->single();
     }
 
-    public function tambahDataMobil($data,$image)
+    public function tambahDataBooking($id,$data)
     {
-        $query = "INSERT INTO mobil
+        $query = "INSERT INTO riwayat
                     VALUES
-                  ('', :tipe, :lokasi, :harga_sewa, :plat_nomor, :tahun, :keterangan, :image)";
+                  ('', :penyewa, :tgl_sewa, :tgl_kembali, :kode_mobil)";
 
         $this->db->query($query);
-        $this->db->bind('tipe', $data['tipe']);
-        $this->db->bind('lokasi', $data['lokasi']);
-        $this->db->bind('harga_sewa', $data['harga_sewa']);
-        $this->db->bind('plat_nomor', $data['plat_nomor']);
-        $this->db->bind('tahun', $data['tahun']);
-        $this->db->bind('keterangan', $data['keterangan']);
-        $this->db->bind('image', $image);
+        $this->db->bind('penyewa', $id);
+        $this->db->bind('tgl_sewa', $data['tgl_sewa']);
+        $this->db->bind('tgl_kembali', md5($data['tgl_kembali']));
+        $this->db->bind('kode_mobil', $data['kode_mobil']);
+
         $this->db->execute();
 
         return $this->db->rowCount();
     }
 
-    public function hapusDataMobil($id)
+    public function hapusDataAkun($id)
     {
-        $query = "DELETE FROM mobil WHERE id = :id";
+        $query = "DELETE FROM mahasiswa WHERE id = :id";
 
         $this->db->query($query);
         $this->db->bind('id', $id);

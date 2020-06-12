@@ -46,6 +46,12 @@ if(!isset($_SESSION)){
                                     <div class="tab-pane fade show active" id="team_member_1" role="tabpanel" aria-labelledby="tab_item_1">
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12">
+                                              <a href="#" class="btn btn-success btn-icon-split mb-4" data-toggle="modal" data-target="#modal-riwayat">
+                                                <span class="icon text-white-50">
+                                                  <i class="fas fa-plus"></i>
+                                                </span>
+                                                <span class="text">Booking</span>
+                                              </a>
                                                 <div class="team-member-info text-left">
                                                     <h4>Riwayat Booking</h4>
                                                 <div style="padding: 2%;">
@@ -108,48 +114,49 @@ if(!isset($_SESSION)){
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">EDIT BOOKING</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">BOOKING</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
+                <form action="<?= BASEURL; ?>/profil/tambahBooking" method="post">
                 <div class="modal-body">
-                    <div class="pick-location" style="padding: 2px;">
-                        <p>Pilih Lokasi</p>
-                        <select class="custom-select">
-                          <option selected>Pilih Lokasi</option>
-                          <option value="1">Bondowoso</option>
-                          <option value="2">Jember</option>
-                          <option value="3">Malang</option>
-                          <option value="3">Situbondo</option>
-                        </select>
-                    </div>
+                  <div class="pick-location" style="padding: 2px;">
+                      <p>Pilih Lokasi</p>
+                      <select class="custom-select" id="lokasi" name="lokasi" required>
+                        <option selected disabled>Pilih Lokasi</option>
+                        <?php foreach( $data['lokasi'] as $tipe ) : ?>
+                          <option value="<?= $tipe['id']; ?>"><?= $tipe['lokasi']; ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                  </div>
 
                     <div class="pick-date" style="padding: 2px;">
                         <p>Tgl Rental</p>
-                        <input id="startDate2" placeholder="Tgl Rental">
+                        <input name="tgl_sewa" id="startDate2" placeholder="Tgl Rental">
                     </div>
 
                     <div class="retern-date" style="padding: 2px;">
                         <p>Tgl Kembali</p>
-                        <input id="endDate2" placeholder="Tgl kembali">
+                        <input name="tgl_kembali" id="endDate2" placeholder="Tgl kembali">
                     </div>
 
                     <div class="car-choose" style="padding: 2px;">
                         <p>Tipe Mobil</p>
-                        <select class="custom-select">
-                            <option selected>Tipe Mobil</option>
-                            <option value="1">Nissan Navara</option>
-                            <option value="2">Toyota Fortuner</option>
-                            <option value="3">Toyota Alphard</option>
-                            <option value="3">Toyota Camry</option>
+                        <select class="custom-select" id="tipe" name="kode_mobil" required>
+                            <option selected disabled>Tipe Mobil</option>
+                            <?php foreach( $data['mobil'] as $mobil ) : ?>
+                              <option value="<?= $mobil['id']; ?>"><?= $mobil['nama_tipe']; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+                <button type="submit" class="btn btn-primary" name="booking">booking</button>
                 </div>
+                </form>
+
             </div>
             </div>
         </div>
