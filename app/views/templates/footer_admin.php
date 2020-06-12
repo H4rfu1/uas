@@ -55,6 +55,25 @@
     </div>
   </div>
 
+  <!-- block Modal-->
+  <div class="modal fade" id="unblockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you sure to unblock?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "unblock" below if you are block this user.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-warning" href="<?= BASEURL; ?>/admin/unblock/">unblock</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap core JavaScript-->
   <script src="<?= BASEURL; ?>/assets/vendor/jquery/jquery.min.js"></script>
   <script src="<?= BASEURL; ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -81,6 +100,15 @@
       var url = $("#blockModal .modal-footer a").attr('href');
       $("#blockModal .modal-footer a").attr('href', url + id);
       })
+    $('#unblockModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget); // Button that triggered the modal
+          var id = button.data('id') ; // Extract info from data-* attributes
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this);
+          var url = $("#unblockModal .modal-footer a").attr('href');
+          $("#unblockModal .modal-footer a").attr('href', url + id);
+          })
   </script>
 
 </body>

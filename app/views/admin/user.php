@@ -6,14 +6,22 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-warning">Data User</h6>
             </div>
+            <div class="container">
+              <div class="row">
+                  <div class="col-lg-3 ">
+                  </div>
+                  <div class="col-lg-6 ">
+                    <?php Flasher::flash(); ?>
+                  </div>
+              </div>
+            </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>block</th>
+                      <th>status</th>
                       <th>id</th>
-                      <th>role</th>
                       <th>usernamee</th>
                       <th>email</th>
                       <th>password</th>
@@ -23,229 +31,41 @@
                       <th>image</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>block</th>
-                      <th>id</th>
-                      <th>role</th>
-                      <th>usernamee</th>
-                      <th>email</th>
-                      <th>password</th>
-                      <th>nm_dpan</th>
-                      <th>nm_blakang</th>
-                      <th>no_ktp</th>
-                      <th>image</th>
-                    </tr>
-                  </tfoot>
                   <tbody>
+                    <?php foreach( $data['user'] as $user ) : ?>
                     <tr>
+                      <?php if( $user['status'] == 'aktif' ) : ?>
                       <td>
-                        <a href="#" class="btn btn-warning btn-icon-split" data-toggle="modal" data-target="#blockModal" data-id="1">
+                        <a href="#" class="btn btn-warning btn-icon-split" data-toggle="modal" data-target="#blockModal" data-id="<?= $user['id']; ?>">
                           <span class="icon text-white-50">
                             <i class="fas fa-flag"></i>
                           </span>
                           <span class="text">Block</span>
                         </a>
                       </td>
-                      <td>1234</td>
-                      <td>Customer</td>
-                      <td>ikbarramd</td>
-                      <td>ikbarramadhani@gmail.com</td>
-                      <td>ulallalalala</td>
-                      <td>Ikbar</td>
-                      <td>Ramadhani</td>
-                      <td>3511110112000001</td>
+                      <?php endif; ?>
+                      <?php if( $user['status'] == 'terblokir' ) : ?>
                       <td>
-                        <a href="#" class="btn btn-secondary btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-arrow-right"></i>
-                          </span>
-                          <span class="text">foto</span>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="btn btn-warning btn-icon-split">
+                        <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#unblockModal" data-id="<?= $user['id']; ?>">
                           <span class="icon text-white-50">
                             <i class="fas fa-flag"></i>
                           </span>
-                          <span class="text">Block</span>
+                          <span class="text">Unblock</span>
                         </a>
                       </td>
-                      <td>1234</td>
-                      <td>Customer</td>
-                      <td>ikbarramd</td>
-                      <td>ikbarramadhani@gmail.com</td>
-                      <td>ulallalalala</td>
-                      <td>Ikbar</td>
-                      <td>Ramadhani</td>
-                      <td>3511110112000001</td>
+                      <?php endif; ?>
+                      <td><?= $user['id']; ?></td>
+                      <td><?= $user['username']; ?></td>
+                      <td><?= $user['email']; ?></td>
+                      <td><?= $user['password']; ?></td>
+                      <td><?= $user['nm_dpan']; ?></td>
+                      <td><?= $user['nm_blakang']; ?></td>
+                      <td><?= $user['no_ktp']; ?></td>
                       <td>
-                        <a href="#" class="btn btn-secondary btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-arrow-right"></i>
-                          </span>
-                          <span class="text">foto</span>
-                        </a>
+                        <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $user['image'] ).'"/>'; ?>
                       </td>
                     </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="btn btn-warning btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-flag"></i>
-                          </span>
-                          <span class="text">Block</span>
-                        </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Customer</td>
-                      <td>ikbarramd</td>
-                      <td>ikbarramadhani@gmail.com</td>
-                      <td>ulallalalala</td>
-                      <td>Ikbar</td>
-                      <td>Ramadhani</td>
-                      <td>3511110112000001</td>
-                      <td>
-                        <a href="#" class="btn btn-secondary btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-arrow-right"></i>
-                          </span>
-                          <span class="text">foto</span>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="btn btn-warning btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-flag"></i>
-                          </span>
-                          <span class="text">Block</span>
-                        </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Customer</td>
-                      <td>ikbarramd</td>
-                      <td>ikbarramadhani@gmail.com</td>
-                      <td>ulallalalala</td>
-                      <td>Ikbar</td>
-                      <td>Ramadhani</td>
-                      <td>3511110112000001</td>
-                      <td>
-                        <a href="#" class="btn btn-secondary btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-arrow-right"></i>
-                          </span>
-                          <span class="text">foto</span>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="btn btn-warning btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-flag"></i>
-                          </span>
-                          <span class="text">Block</span>
-                        </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Customer</td>
-                      <td>ikbarramd</td>
-                      <td>ikbarramadhani@gmail.com</td>
-                      <td>ulallalalala</td>
-                      <td>Ikbar</td>
-                      <td>Ramadhani</td>
-                      <td>3511110112000001</td>
-                      <td>
-                        <a href="#" class="btn btn-secondary btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-arrow-right"></i>
-                          </span>
-                          <span class="text">foto</span>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="btn btn-warning btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-flag"></i>
-                          </span>
-                          <span class="text">Block</span>
-                        </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Customer</td>
-                      <td>ikbarramd</td>
-                      <td>ikbarramadhani@gmail.com</td>
-                      <td>ulallalalala</td>
-                      <td>Ikbar</td>
-                      <td>Ramadhani</td>
-                      <td>3511110112000001</td>
-                      <td>
-                        <a href="#" class="btn btn-secondary btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-arrow-right"></i>
-                          </span>
-                          <span class="text">foto</span>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="btn btn-warning btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-flag"></i>
-                          </span>
-                          <span class="text">Block</span>
-                        </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Customer</td>
-                      <td>ikbarramd</td>
-                      <td>ikbarramadhani@gmail.com</td>
-                      <td>ulallalalala</td>
-                      <td>Ikbar</td>
-                      <td>Ramadhani</td>
-                      <td>3511110112000001</td>
-                      <td>
-                        <a href="#" class="btn btn-secondary btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-arrow-right"></i>
-                          </span>
-                          <span class="text">foto</span>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="btn btn-warning btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-flag"></i>
-                          </span>
-                          <span class="text">Block</span>
-                        </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Customer</td>
-                      <td>ikbarramd</td>
-                      <td>ikbarramadhani@gmail.com</td>
-                      <td>ulallalalala</td>
-                      <td>Ikbar</td>
-                      <td>Ramadhani</td>
-                      <td>3511110112000001</td>
-                      <td>
-                        <a href="#" class="btn btn-secondary btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-arrow-right"></i>
-                          </span>
-                          <span class="text">foto</span>
-                        </a>
-                      </td>
-                    </tr>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>
@@ -259,11 +79,12 @@
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <?php $i=1;
+                            while ($i <= ceil(count($data['user'])/8)):
+                            ?>
+                            <li class="page-item <?php if($data['aktif']==$i) echo 'active'; ?>"><a class="page-link" href="#"><?= $i ?></a></li>
+                            <?php $i++;    endwhile;
+                            ?>
                             <li class="page-item"><a class="page-link" href="#">Next</a></li>
                         </ul>
                     </nav>

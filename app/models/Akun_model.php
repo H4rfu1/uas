@@ -11,7 +11,7 @@ class Akun_model {
 
     public function getAllAkun()
     {
-        $this->db->query('SELECT * FROM ' . $this->table);
+        $this->db->query('SELECT * FROM ' . $this->table.' WHERE role=2');
         return $this->db->resultSet();
     }
 
@@ -89,6 +89,33 @@ class Akun_model {
         $this->db->query('SELECT * FROM ' . $this->table . ' WHERE email=:masukan or username=:masukan');
         $this->db->bind('masukan', $masukan);
         return $this->db->single();
+    }
+    public function blockAkun($id)
+    {
+      try {
+        $query = "UPDATE akun SET
+                    status = 'terblokir'
+                  WHERE id = :id";
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+      } catch (\Exception $e) {
+        var_dump($e); die;
+      }
+
+    }
+    public function unblockAkun($id)
+    {
+      $query = "UPDATE akun SET
+                  status = 'aktif'
+                WHERE id = :id";
+      $this->db->query($query);
+      $this->db->bind('id', $id);
+      $this->db->execute();
+
+      return $this->db->rowCount();
     }
 
 }
