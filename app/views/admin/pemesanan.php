@@ -9,228 +9,25 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
+                  <thead class="bg-warning">
                     <tr>
-                      <th>Detail</th>
-                      <th>id</th>
-                      <th>penyewa</th>
-                      <th>Tanggal Sewa</th>
-                      <th>Tanggal Kembali</th>
-                      <th>Kode Mobil</th>
-                      <th>Status</th>
+                      <th scope="col">NO</th>
+                      <th scope="col">LOKASI</th>
+                      <th scope="col">TGL RENTAL</th>
+                      <th scope="col">TGL KEMBALI</th>
+                      <th scope="col">TIPE MOBIL</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Detail</th>
-                      <th>id</th>
-                      <th>penyewa</th>
-                      <th>Tanggal Sewa</th>
-                      <th>Tanggal Kembali</th>
-                      <th>Kode Mobil</th>
-                      <th>Status</th>
-                    </tr>
-                  </tfoot>
                   <tbody>
+                    <?php $i=1; foreach( $data['transaksi'] as $trk ) : ?>
                     <tr>
-                      <td>
-                      </a>
-                      <div class="my-2"></div>
-                      <a href="#" class="btn btn-info btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-info-circle"></i>
-                        </span>
-                        <span class="text">Detail</span>
-                      </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Ikbar Ramadhani</td>
-                      <td>16/9/2020</td>
-                      <td>18/9/2020</td>
-                      <td>12345</td>
-                      <td>Sudah Kembali</td>
+                      <th scope="row"><?= $i ?></th>
+                      <td><?= $trk['lokasi']; ?></td>
+                      <td><?= $trk['tgl_sewa']; ?></td>
+                      <td><?= $trk['tgl_kembali']; ?></td>
+                      <td><?= $trk['nama_tipe']; ?></td>
                     </tr>
-                    <tr>
-                      <td>
-                      </a>
-                      <div class="my-2"></div>
-                      <a href="#" class="btn btn-info btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-info-circle"></i>
-                        </span>
-                        <span class="text">Detail</span>
-                      </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Ikbar Ramadhani</td>
-                      <td>16/9/2020</td>
-                      <td>18/9/2020</td>
-                      <td>12345</td>
-                      <td>Sudah Kembali</td>
-                    </tr>
-                    <tr>
-                      <td>
-                      </a>
-                      <div class="my-2"></div>
-                      <a href="#" class="btn btn-info btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-info-circle"></i>
-                        </span>
-                        <span class="text">Detail</span>
-                      </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Ikbar Ramadhani</td>
-                      <td>16/9/2020</td>
-                      <td>18/9/2020</td>
-                      <td>12345</td>
-                      <td>Sudah Kembali</td>
-                    </tr>
-                    <tr>
-                      <td>
-                      </a>
-                      <div class="my-2"></div>
-                      <a href="#" class="btn btn-info btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-info-circle"></i>
-                        </span>
-                        <span class="text">Detail</span>
-                      </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Ikbar Ramadhani</td>
-                      <td>16/9/2020</td>
-                      <td>18/9/2020</td>
-                      <td>12345</td>
-                      <td>Sudah Kembali</td>
-                    </tr>
-                    <tr>
-                      <td>
-                      </a>
-                      <div class="my-2"></div>
-                      <a href="#" class="btn btn-info btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-info-circle"></i>
-                        </span>
-                        <span class="text">Detail</span>
-                      </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Ikbar Ramadhani</td>
-                      <td>16/9/2020</td>
-                      <td>18/9/2020</td>
-                      <td>12345</td>
-                      <td>Sudah Kembali</td>
-                    </tr>
-                    <tr>
-                      <td>
-                      </a>
-                      <div class="my-2"></div>
-                      <a href="#" class="btn btn-info btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-info-circle"></i>
-                        </span>
-                        <span class="text">Detail</span>
-                      </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Ikbar Ramadhani</td>
-                      <td>16/9/2020</td>
-                      <td>18/9/2020</td>
-                      <td>12345</td>
-                      <td>Sudah Kembali</td>
-                    </tr>
-                    <tr>
-                      <td>
-                      </a>
-                      <div class="my-2"></div>
-                      <a href="#" class="btn btn-info btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-info-circle"></i>
-                        </span>
-                        <span class="text">Detail</span>
-                      </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Ikbar Ramadhani</td>
-                      <td>16/9/2020</td>
-                      <td>18/9/2020</td>
-                      <td>12345</td>
-                      <td>Sudah Kembali</td>
-                    </tr>
-                    <tr>
-                      <td>
-                      </a>
-                      <div class="my-2"></div>
-                      <a href="#" class="btn btn-info btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-info-circle"></i>
-                        </span>
-                        <span class="text">Detail</span>
-                      </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Ikbar Ramadhani</td>
-                      <td>16/9/2020</td>
-                      <td>18/9/2020</td>
-                      <td>12345</td>
-                      <td>Sudah Kembali</td>
-                    </tr>
-                    <tr>
-                      <td>
-                      </a>
-                      <div class="my-2"></div>
-                      <a href="#" class="btn btn-info btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-info-circle"></i>
-                        </span>
-                        <span class="text">Detail</span>
-                      </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Ikbar Ramadhani</td>
-                      <td>16/9/2020</td>
-                      <td>18/9/2020</td>
-                      <td>12345</td>
-                      <td>Sudah Kembali</td>
-                    </tr>
-                    <tr>
-                      <td>
-                      </a>
-                      <div class="my-2"></div>
-                      <a href="#" class="btn btn-info btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-info-circle"></i>
-                        </span>
-                        <span class="text">Detail</span>
-                      </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Ikbar Ramadhani</td>
-                      <td>16/9/2020</td>
-                      <td>18/9/2020</td>
-                      <td>12345</td>
-                      <td>Sudah Kembali</td>
-                    </tr>
-                    <tr>
-                      <td>
-                      </a>
-                      <div class="my-2"></div>
-                      <a href="#" class="btn btn-info btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-info-circle"></i>
-                        </span>
-                        <span class="text">Detail</span>
-                      </a>
-                      </td>
-                      <td>1234</td>
-                      <td>Ikbar Ramadhani</td>
-                      <td>16/9/2020</td>
-                      <td>18/9/2020</td>
-                      <td>12345</td>
-                      <td>Sudah Kembali</td>
-                    </tr>
-                    </tr>
+                    <?php $i++; endforeach; ?>
                   </tbody>
                 </table>
               </div>

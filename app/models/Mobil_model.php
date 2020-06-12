@@ -11,7 +11,7 @@ class Mobil_model {
 
     public function getAllMobil()
     {
-        $this->db->query('SELECT * FROM mobil m join tipe_mobil tm on m.tipe = tm.id');
+        $this->db->query('SELECT * FROM mobil m join tipe_mobil tm on m.tipe = tm.id_tipe');
         return $this->db->resultSet();
     }
 

@@ -19,7 +19,7 @@ if(!isset($_SESSION)){
                     <div class="section-title  text-center">
                         <h2>Profil Anda</h2>
                         <div class="team-mem-icon" style="display: block; margin-left: auto; margin-right: auto;">
-                            <img src="<?= BASEURL; ?>/assets/img/team/team-mem-thumb-1.png" alt="JSOFT">
+                            <img src="<?= BASEURL; ?>/assets/img/profil/<?= $data['user']['image']; ?>" alt="JSOFT">
                         </div>
                         <div>
                             <button type="button" class="map-show" style="border: none; cursor: pointer;" data-toggle="modal" data-target="#modal-profil">EDIT PROFIL SAYA</button>
@@ -46,6 +46,15 @@ if(!isset($_SESSION)){
                                     <div class="tab-pane fade show active" id="team_member_1" role="tabpanel" aria-labelledby="tab_item_1">
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12">
+                                              <div class="container">
+                                                <div class="row">
+                                                    <div class="col-lg-3 ">
+                                                    </div>
+                                                    <div class="col-lg-6 ">
+                                                      <?php Flasher::flash(); ?>
+                                                    </div>
+                                                </div>
+                                              </div>
                                               <a href="#" class="btn btn-success btn-icon-split mb-4" data-toggle="modal" data-target="#modal-riwayat">
                                                 <span class="icon text-white-50">
                                                   <i class="fas fa-plus"></i>
@@ -59,7 +68,6 @@ if(!isset($_SESSION)){
                                                         <thead class="bg-warning">
                                                           <tr>
                                                             <th scope="col">NO</th>
-                                                            <th scope="col">TGL BOOKING</th>
                                                             <th scope="col">LOKASI</th>
                                                             <th scope="col">TGL RENTAL</th>
                                                             <th scope="col">TGL KEMBALI</th>
@@ -68,29 +76,19 @@ if(!isset($_SESSION)){
                                                           </tr>
                                                         </thead>
                                                         <tbody>
+                                                          <?php $i=1; foreach( $data['transaksi'] as $trk ) : ?>
                                                           <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>1/6/2020</td>
-                                                            <td>Bondowoso</td>
-                                                            <td>10/6/2020</td>
-                                                            <td>12/6/2020</td>
-                                                            <td>Toyota Alphard</td>
+                                                            <th scope="row"><?= $i ?></th>
+                                                            <td><?= $trk['lokasi']; ?></td>
+                                                            <td><?= $trk['tgl_sewa']; ?></td>
+                                                            <td><?= $trk['tgl_kembali']; ?></td>
+                                                            <td><?= $trk['nama_tipe']; ?></td>
                                                             <td>
-                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-riwayat">Edit</button>
-                                                                <button type="button" class="btn btn-danger">Hapus</button>
+                                                                <button type="button" class="btn btn-primary" onclick="window.location.href='<?= BASEURL; ?>/profil/editBooking/<?= $trk['id_transaksi']; ?>'">Edit</button>
+                                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapusModal" data-id="<?= $trk['id_transaksi']; ?>">Hapus</button>
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <th scope="row">2</th>
-                                                            <td>1/7/2020</td>
-                                                            <td>Bondowoso</td>
-                                                            <td>10/7/2020</td>
-                                                            <td>12/7/2020</td>
-                                                            <td>Toyota</td>
-                                                            <td>
-                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-riwayat">Edit</button>
-                                                                <button type="button" class="btn btn-danger">Hapus</button>
-                                                            </td>                                                          </tr>
+                                                          <?php $i++; endforeach; ?>
                                                         </tbody>
                                                       </table>
                                                 </div>
@@ -133,12 +131,12 @@ if(!isset($_SESSION)){
 
                     <div class="pick-date" style="padding: 2px;">
                         <p>Tgl Rental</p>
-                        <input name="tgl_sewa" id="startDate2" placeholder="Tgl Rental">
+                        <input type="date" name="tgl_sewa" id="startDate2" placeholder="Tgl Rental">
                     </div>
 
                     <div class="retern-date" style="padding: 2px;">
                         <p>Tgl Kembali</p>
-                        <input name="tgl_kembali" id="endDate2" placeholder="Tgl kembali">
+                        <input type="date" name="tgl_kembali" id="endDate2" placeholder="Tgl kembali">
                     </div>
 
                     <div class="car-choose" style="padding: 2px;">
@@ -160,7 +158,7 @@ if(!isset($_SESSION)){
             </div>
             </div>
         </div>
-    <!--== Modal Edit Riwayat End ==-->
+    <!--== Modal add Riwayat End ==-->
 
     <!--== Modal Edit Profil Start ==-->
         <div class="modal fade" id="modal-profil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -212,3 +210,21 @@ if(!isset($_SESSION)){
             </div>
         </div>
     <!--== Modal Edit Profil End ==-->
+    <!-- hapus Modal-->
+    <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">yakin di hapus?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "delete" untuk ngehapusnya.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-warning" href="<?= BASEURL; ?>/profil/hapusBooking/">delete</a>
+          </div>
+        </div>
+      </div>
+    </div>

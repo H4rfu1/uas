@@ -11,27 +11,27 @@ class Booking_model {
 
     public function getAllBooking()
     {
-        $this->db->query('SELECT * FROM ' . $this->table);
+        $this->db->query('SELECT * FROM transaksi t join mobil m on t.kode_mobil=m.id join tipe_mobil tm on m.tipe = tm.id_tipe join lokasi l on m.lokasi=l.id');
         return $this->db->resultSet();
     }
 
     public function getBookingById($id)
     {
-        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id');
+        $this->db->query('SELECT * FROM transaksi t join mobil m on t.kode_mobil=m.id join tipe_mobil tm on m.tipe = tm.id_tipe join lokasi l on m.lokasi=l.id WHERE t.id_transaksi=:id');
         $this->db->bind('id', $id);
         return $this->db->single();
     }
 
     public function tambahDataBooking($id,$data)
     {
-        $query = "INSERT INTO riwayat
+        $query = "INSERT INTO transaksi
                     VALUES
                   ('', :penyewa, :tgl_sewa, :tgl_kembali, :kode_mobil)";
 
         $this->db->query($query);
         $this->db->bind('penyewa', $id);
         $this->db->bind('tgl_sewa', $data['tgl_sewa']);
-        $this->db->bind('tgl_kembali', md5($data['tgl_kembali']));
+        $this->db->bind('tgl_kembali', $data['tgl_kembali']);
         $this->db->bind('kode_mobil', $data['kode_mobil']);
 
         $this->db->execute();
@@ -39,9 +39,9 @@ class Booking_model {
         return $this->db->rowCount();
     }
 
-    public function hapusDataAkun($id)
+    public function hapusDataBooking($id)
     {
-        $query = "DELETE FROM mahasiswa WHERE id = :id";
+        $query = "DELETE FROM transaksi WHERE id_transaksi = :id";
 
         $this->db->query($query);
         $this->db->bind('id', $id);
@@ -52,25 +52,23 @@ class Booking_model {
     }
 
 
-    public function ubahDataAkun($data)
+    public function ubahDataBooking($id,$data)
     {
-        $query = "UPDATE mahasiswa SET
-                    nama = :nama,
-                    nrp = :nrp,
-                    email = :email,
-                    jurusan = :jurusan
-                  WHERE id = :id";
+        $query = "UPDATE transaksi SET
+                    tgl_sewa = :tgl_sewa,
+                    tgl_kembali = :tgl_kembali,
+                    kode_mobil = :kode_mobil
+                  WHERE id_transaksi = :id";
 
-        $this->db->query($query);
-        $this->db->bind('nama', $data['nama']);
-        $this->db->bind('nrp', $data['nrp']);
-        $this->db->bind('email', $data['email']);
-        $this->db->bind('jurusan', $data['jurusan']);
-        $this->db->bind('id', $data['id']);
+                  $this->db->query($query);
+                  $this->db->bind('tgl_sewa', $data['tgl_sewa']);
+                  $this->db->bind('tgl_kembali', $data['tgl_kembali']);
+                  $this->db->bind('kode_mobil', $data['kode_mobil']);
+                  $this->db->bind('id', $id);
 
-        $this->db->execute();
+                  $this->db->execute();
 
-        return $this->db->rowCount();
+                  return $this->db->rowCount();
     }
 
 

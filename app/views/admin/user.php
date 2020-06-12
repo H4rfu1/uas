@@ -32,11 +32,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach( $data['user'] as $user ) : ?>
+                    <?php foreach( $data['pengguna'] as $pengguna ) : ?>
                     <tr>
-                      <?php if( $user['status'] == 'aktif' ) : ?>
+                      <?php if( $pengguna['status'] == 'aktif' ) : ?>
                       <td>
-                        <a href="#" class="btn btn-warning btn-icon-split" data-toggle="modal" data-target="#blockModal" data-id="<?= $user['id']; ?>">
+                        <a href="#" class="btn btn-warning btn-icon-split" data-toggle="modal" data-target="#blockModal" data-id="<?= $pengguna['id']; ?>">
                           <span class="icon text-white-50">
                             <i class="fas fa-flag"></i>
                           </span>
@@ -44,9 +44,9 @@
                         </a>
                       </td>
                       <?php endif; ?>
-                      <?php if( $user['status'] == 'terblokir' ) : ?>
+                      <?php if( $pengguna['status'] == 'terblokir' ) : ?>
                       <td>
-                        <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#unblockModal" data-id="<?= $user['id']; ?>">
+                        <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#unblockModal" data-id="<?= $pengguna['id']; ?>">
                           <span class="icon text-white-50">
                             <i class="fas fa-flag"></i>
                           </span>
@@ -54,15 +54,15 @@
                         </a>
                       </td>
                       <?php endif; ?>
-                      <td><?= $user['id']; ?></td>
-                      <td><?= $user['username']; ?></td>
-                      <td><?= $user['email']; ?></td>
-                      <td><?= $user['password']; ?></td>
-                      <td><?= $user['nm_dpan']; ?></td>
-                      <td><?= $user['nm_blakang']; ?></td>
-                      <td><?= $user['no_ktp']; ?></td>
+                      <td><?= $pengguna['id']; ?></td>
+                      <td><?= $pengguna['username']; ?></td>
+                      <td><?= $pengguna['email']; ?></td>
+                      <td><?= $pengguna['password']; ?></td>
+                      <td><?= $pengguna['nm_dpan']; ?></td>
+                      <td><?= $pengguna['nm_blakang']; ?></td>
+                      <td><?= $pengguna['no_ktp']; ?></td>
                       <td>
-                        <img class=".img-fluid mh-100" style="width: 100px;" src="<?= BASEURL; ?>/assets/img/profil/<?= $user['image']; ?>" alt="">
+                        <img class=".img-fluid mh-100" style="width: 100px;" src="<?= BASEURL; ?>/assets/img/profil/<?= $pengguna['image']; ?>" alt="">
                       </td>
                     </tr>
                     <?php endforeach; ?>

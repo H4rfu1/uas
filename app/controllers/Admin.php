@@ -5,7 +5,7 @@ class Admin extends Controller {
     public function index()
     {
       $data['judul'] = 'Dashboard Admin';
-      // $data['nama'] = $this->model('User_model')->getUser();
+      $data['user'] = $this->model('Akun_model')->getAkunById($_SESSION['id']);
       $this->view('templates/header_admin', $data);
       $this->view('admin/index', $data);
       $this->view('templates/footer_admin');
@@ -16,7 +16,8 @@ class Admin extends Controller {
     {
       $data['judul'] = 'user menu';
       $data['aktif'] = $aktif;
-      $data['user'] = $this->model('Akun_model')->getAllAkun();
+      $data['pengguna'] = $this->model('Akun_model')->getAllAkun();
+      $data['user'] = $this->model('Akun_model')->getAkunById($_SESSION['id']);
       $this->view('templates/header_admin', $data);
       $this->view('admin/user', $data);
       $this->view('templates/footer_admin');
@@ -53,11 +54,15 @@ class Admin extends Controller {
     public function pemesanan()
     {
       $data['judul'] = 'pemesanan menu';
-      // $data['nama'] = $this->model('User_model')->getUser();
+      $data['user'] = $this->model('Akun_model')->getAkunById($_SESSION['id']);
+      $data['lokasi'] = $this->model('Lokasi_model')->getAllLokasi();
+      $data['mobil'] = $this->model('Mobil_model')->getAllMobil();
+      $data['transaksi'] = $this->model('Booking_model')->getAllBooking();
       $this->view('templates/header_admin', $data);
       $this->view('admin/pemesanan', $data);
       $this->view('templates/footer_admin');
     }
+
 
 
 
@@ -85,6 +90,7 @@ class Admin extends Controller {
       $data['tipe'] = $this->model('Tipemobil_model')->getAllTipe();
       $data['spesifikasi'] = $this->model('Spesifikasi_model')->getAllSpesifikasi();
       $data['mobil'] = $this->model('Mobil_model')->getAllMobil();
+      $data['user'] = $this->model('Akun_model')->getAkunById($_SESSION['id']);
       $this->view('templates/header_admin', $data);
       $this->view('admin/kendaraan', $data);
       $this->view('templates/footer_admin');
