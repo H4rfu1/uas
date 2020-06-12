@@ -72,8 +72,12 @@
                                   <li <?php if($data['judul']=='Home') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/home">Beranda</a></li>
                                   <li <?php if($data['judul']=='Pelayanan') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/pelayanan">Pelayanan</a></li>
                                   <li <?php if($data['judul']=='Daftar Mobil') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/listcar">Rental Mobil</a></li>
-                                  <li <?php if($data['judul']=='Profil') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/profil">Profil</a></li>
-                                  <li <?php if($data['judul']=='Masuk') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/masuk">Masuk</a></li>
+                                  <?php if(isset($_SESSION['role'])): ?>
+                                    <li <?php if($data['judul']=='Profil') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/profil">Profil</a></li>
+                                  <?php endif; ?>
+                                  <?php if(!isset($_SESSION['role'])): ?>
+                                    <li <?php if($data['judul']=='Masuk') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/masuk">Masuk</a></li>
+                                  <?php endif; ?>
                               </ul>
                           </nav>
                       </div>

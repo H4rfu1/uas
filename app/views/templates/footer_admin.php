@@ -74,6 +74,10 @@
     </div>
   </div>
 
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
   <!-- Bootstrap core JavaScript-->
   <script src="<?= BASEURL; ?>/assets/vendor/jquery/jquery.min.js"></script>
   <script src="<?= BASEURL; ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -90,6 +94,7 @@
   <!-- Page level custom scripts -->
   <script src="<?= BASEURL; ?>/assets/js/demo/chart-area-demo.js"></script>
   <script src="<?= BASEURL; ?>/assets/js/demo/chart-pie-demo.js"></script>
+  <script src="<?= BASEURL; ?>/assets/js/script.js"></script>
   <script type="text/javascript">
   $('#blockModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget); // Button that triggered the modal
@@ -109,6 +114,15 @@
           var url = $("#unblockModal .modal-footer a").attr('href');
           $("#unblockModal .modal-footer a").attr('href', url + id);
           })
+    $('#hapusModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var id = button.data('id') ; // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this);
+        var url = $("#hapusModal .modal-footer a").attr('href');
+        $("#hapusModal .modal-footer a").attr('href', url + id);
+        })
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
       })

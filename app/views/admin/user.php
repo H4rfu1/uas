@@ -62,7 +62,7 @@
                       <td><?= $user['nm_blakang']; ?></td>
                       <td><?= $user['no_ktp']; ?></td>
                       <td>
-                        <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $user['image'] ).'"/>'; ?>
+                        <img class=".img-fluid mh-100" style="width: 100px;" src="<?= BASEURL; ?>/assets/img/profil/<?= $user['image']; ?>" alt="">
                       </td>
                     </tr>
                     <?php endforeach; ?>

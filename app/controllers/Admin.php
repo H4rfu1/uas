@@ -62,6 +62,22 @@ class Admin extends Controller {
 
 
     //halaman kendaraan
+    public function getubah()
+    {
+        echo json_encode($this->model('Mobil_model')->getMobilById($_POST['id']));
+    }
+    public function hapusMobil($id)
+    {
+        if( $this->model('Mobil_model')->hapusDataMobil($id) > 0 ) {
+            Flasher::setFlash('berhasil', 'dihapus', 'success');
+            header('Location: ' . BASEURL . '/admin/kendaraan');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'dihapus', 'danger');
+            header('Location: ' . BASEURL . '/admin/kendaraan');
+            exit;
+        }
+    }
     public function kendaraan($aktif='1')
     {
       $data['judul'] = 'kendaraan menu';
@@ -77,9 +93,14 @@ class Admin extends Controller {
     {
       // var_dump($_POST); die;
       if(isset($_POST['tambah'])){
-			$nama = $_FILES['image']['name'];
-			$ukuran	= $_FILES['image']['size'];
-			$image   = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+			// $nama = $_FILES['image']['name'];
+			// $ukuran	= $_FILES['image']['size'];
+      // $tipe_gambar	= $_FILES['image']['type'];
+      $image = $_FILES['image']['name'];
+
+      // image file directory
+      $target = "assets/img/car/".basename($image);
+			move_uploaded_file($_FILES['image']['tmp_name'], $target);
 				if($ukuran < 1044070){
 					  // move_uploaded_file($file_tmp, 'assets/img/profil/'.$nama);
             if( $this->model('Mobil_model')->tambahDataMobil($_POST,$image) > 0 ) {
@@ -119,6 +140,7 @@ class Admin extends Controller {
        // mengalihkan halaman ke halaman login
       header('Location: ' . BASEURL . '/');
     }
+
 
 
 }

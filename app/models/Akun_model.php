@@ -36,6 +36,7 @@ class Akun_model {
         $this->db->bind('nm_blakang', $data['nm_blakang']);
         $this->db->bind('no_ktp', $data['no_ktp']);
         $this->db->bind('image', $image);
+
         $this->db->execute();
 
         return $this->db->rowCount();

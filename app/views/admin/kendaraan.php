@@ -41,23 +41,14 @@
                     <?php foreach( $data['mobil'] as $mobil ) : ?>
                     <tr>
                       <td>
-                      <a href="#" class="btn btn-info btn-icon-split">
-                          <span class="icon text-white-50">
-                            <i class="fas fa-info-circle"></i>
-                          </span>
-                          <span class="text">Detail</span>
-                        </a>
-
-
-                        <a href="#" class="btn btn-danger btn-icon-split">
+                        <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#hapusModal" data-id="<?= $mobil['id']; ?>">
                           <span class="icon text-white-50">
                             <i class="fas fa-trash"></i>
                           </span>
                           <span class="text">Hapus</span>
                         </a>
 
-
-                        <a href="#" class="btn btn-light btn-icon-split">
+                        <a href="#" id="edit" class="btn btn-warning btn-icon-split" data-toggle="modal" data-target="#modal-tambah-mobil" data-id="<?= $mobil['id']; ?>">
                           <span class="icon text-gray-600">
                             <i class="fas fa-arrow-right"></i>
                           </span>
@@ -74,7 +65,7 @@
                       <td><?= $mobil['tahun']; ?></td>
                       <td><?= $mobil['keterangan']; ?></td>
                       <td>
-                        <?php echo '<img src="data:image/jpg;base64,'.base64_encode( $mobil['image'] ).'"/>';?>
+                        <img class=".img-fluid mh-100" style="width: 100px;" src="<?= BASEURL; ?>/assets/img/car/<?= $mobil['image']; ?>" alt="">
                       </td>
                     </tr>
                     <?php endforeach; ?>
@@ -123,7 +114,7 @@
                         <form action="<?= BASEURL; ?>/admin/tambahMobil" method="post" enctype="multipart/form-data">
                           <div class="car-choose" style="padding: 2px;">
                               <p>Tipe Mobil</p>
-                              <select class="custom-select" name="tipe" required>
+                              <select class="custom-select" id="tipe" name="tipe" required>
                                   <option selected disabled>Tipe Mobil</option>
                                   <?php foreach( $data['tipe'] as $lokasi ) : ?>
                                     <option value="<?= $lokasi['id']; ?>"><?= $lokasi['nama_tipe']; ?></option>
@@ -132,7 +123,7 @@
                           </div>
                           <div class="pick-location" style="padding: 2px;">
                               <p>Pilih Lokasi</p>
-                              <select class="custom-select" name="lokasi" required>
+                              <select class="custom-select" id="lokasi" name="lokasi" required>
                                 <option selected disabled>Pilih Lokasi</option>
                                 <?php foreach( $data['lokasi'] as $tipe ) : ?>
                                   <option value="<?= $tipe['id']; ?>"><?= $tipe['lokasi']; ?></option>
@@ -140,13 +131,13 @@
                               </select>
                           </div>
                           <div class="form-group">
-                            <input type="number" placeholder="Harga Sewa" name="harga_sewa" required>
+                            <input type="number" id="harga_sewa"placeholder="Harga Sewa" name="harga_sewa" required>
                           </div>
                           <div class="form-group">
-                            <input type="text" placeholder="Plat Nomor" name="plat_nomor" required>
+                            <input type="text" id="plat_nomor" placeholder="Plat Nomor" name="plat_nomor" required>
                           </div>
                           <div class="form-group">
-                            <input type="number" placeholder="Tahun" name="tahun" required >
+                            <input type="number" id="tahun" placeholder="Tahun" name="tahun" required >
                           </div>
                           <div class="form-group">
                             <label for="ket">spesifikasi:</label>
@@ -163,8 +154,8 @@
                             <textarea class="form-control" id="ket" name="keterangan" rows="3" required></textarea>
                           </div>
                           <div class="form-group">
-                            <label for="ket">gambar mobil:</label>
-                            <input type="file" name="image" accept="image/jpeg" required>
+                            <label for="gambar">gambar mobil:</label>
+                            <input type="file" name="image" id="image" accept="image/*" required>
                           </div>
                           <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -177,6 +168,93 @@
                   </div>
               </div>
           <!--== Modal Edit Riwayat End ==-->
+
+          <!--== Modal edit mobil ==-->
+                <div class="modal fade" id="modal-edit-mobil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Tambah Mobil</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="<?= BASEURL; ?>/admin/tambahMobil" method="post" enctype="multipart/form-data">
+                            <div class="car-choose" style="padding: 2px;">
+                                <p>Tipe Mobil</p>
+                                <select class="custom-select" name="tipe" required>
+                                    <option disabled>Tipe Mobil</option>
+                                    <?php foreach( $data['tipe'] as $lokasi ) : ?>
+                                      <option value="<?= $lokasi['id']; ?>" ><?= $lokasi['nama_tipe']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="pick-location" style="padding: 2px;">
+                                <p>Pilih Lokasi</p>
+                                <select class="custom-select" name="lokasi" required>
+                                  <option selected disabled>Pilih Lokasi</option>
+                                  <?php foreach( $data['lokasi'] as $tipe ) : ?>
+                                    <option value="<?= $tipe['id']; ?>"><?= $tipe['lokasi']; ?></option>
+                                  <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                              <input type="number" placeholder="Harga Sewa" name="harga_sewa" required>
+                            </div>
+                            <div class="form-group">
+                              <input type="text" placeholder="Plat Nomor" name="plat_nomor" required>
+                            </div>
+                            <div class="form-group">
+                              <input type="number" placeholder="Tahun" name="tahun" required >
+                            </div>
+                            <div class="form-group">
+                              <label for="ket">spesifikasi:</label>
+                              <?php foreach( $data['spesifikasi'] as $spek ) : ?>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" name="<?= $spek['id']; ?>" value="kecentang"><span data-toggle="tooltip" data-placement="top" title="<?= $spek['keterangan']; ?>">
+                                    <?= $spek['spesifikasi']; ?>
+                                  </span> </label>
+                                </div>
+                               <?php endforeach; ?>
+                            </div>
+                            <div class="form-group">
+                              <label for="ket">keterangan:</label>
+                              <textarea class="form-control" id="ket" name="keterangan" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                              <label for="ket">gambar mobil:</label>
+                              <input type="file" name="image" accept="image/jpeg" required>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary" name="tambah">Tambah</button>
+                            </div>
+                          </form>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+            <!--== Modal Edit  End ==-->
+            <!-- hapus Modal-->
+            <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">yakin di hapus?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">Select "delete" untuk ngehapusnya.</div>
+                  <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-warning" href="<?= BASEURL; ?>/admin/hapusMobil/">delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
       </div>
       <!-- End of Main Content -->

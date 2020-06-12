@@ -41,9 +41,9 @@ class Mobil_model {
         return $this->db->rowCount();
     }
 
-    public function hapusDataAkun($id)
+    public function hapusDataMobil($id)
     {
-        $query = "DELETE FROM mahasiswa WHERE id = :id";
+        $query = "DELETE FROM mobil WHERE id = :id";
 
         $this->db->query($query);
         $this->db->bind('id', $id);
