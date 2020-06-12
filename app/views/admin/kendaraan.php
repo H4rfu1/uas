@@ -58,7 +58,7 @@
 
                       </td>
                       <td><?= $mobil['id']; ?></td>
-                      <td><?= $mobil['tipe']; ?></td>
+                      <td><?= $mobil['nama_tipe']; ?></td>
                       <td><?= $mobil['lokasi']; ?></td>
                       <td><?= $mobil['harga_sewa']; ?></td>
                       <td><?= $mobil['plat_nomor']; ?></td>
@@ -116,8 +116,8 @@
                               <p>Tipe Mobil</p>
                               <select class="custom-select" id="tipe" name="tipe" required>
                                   <option selected disabled>Tipe Mobil</option>
-                                  <?php foreach( $data['tipe'] as $lokasi ) : ?>
-                                    <option value="<?= $lokasi['id']; ?>"><?= $lokasi['nama_tipe']; ?></option>
+                                  <?php foreach( $data['tipe'] as $tipe ) : ?>
+                                    <option value="<?= $tipe['id_tipe']; ?>"><?= $tipe['nama_tipe']; ?></option>
                                   <?php endforeach; ?>
                               </select>
                           </div>
