@@ -69,11 +69,11 @@
                       <div class="col-lg-8 d-none d-xl-block">
                           <nav class="mainmenu alignright">
                               <ul>
-                                  <li class="active"><a href="<?= BASEURL; ?>/home">Beranda</a></li>
-                                  <li><a href="<?= BASEURL; ?>/pelayanan">Pelayanan</a></li>
-                                  <li><a href="<?= BASEURL; ?>/car-without-sidebar">Rental Mobil</a></li>
-                                  <li><a href="<?= BASEURL; ?>/profil">Profil</a></li>
-                                  <li><a href="<?= BASEURL; ?>/masuk">Masuk</a></li>
+                                  <li <?php if($data['judul']=='Home') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/home">Beranda</a></li>
+                                  <li <?php if($data['judul']=='Pelayanan') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/pelayanan">Pelayanan</a></li>
+                                  <li <?php if($data['judul']=='Daftar Mobil') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/listcar">Rental Mobil</a></li>
+                                  <li <?php if($data['judul']=='Profil') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/profil">Profil</a></li>
+                                  <li <?php if($data['judul']=='Masuk') echo 'class="active"'; ?>><a href="<?= BASEURL; ?>/masuk">Masuk</a></li>
                               </ul>
                           </nav>
                       </div>
