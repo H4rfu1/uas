@@ -109,6 +109,9 @@
           var url = $("#unblockModal .modal-footer a").attr('href');
           $("#unblockModal .modal-footer a").attr('href', url + id);
           })
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
   </script>
 
 </body>

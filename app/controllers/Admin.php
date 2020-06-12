@@ -58,14 +58,58 @@ class Admin extends Controller {
       $this->view('admin/pemesanan', $data);
       $this->view('templates/footer_admin');
     }
-    public function kendaraan()
+
+
+
+    //halaman kendaraan
+    public function kendaraan($aktif='1')
     {
       $data['judul'] = 'kendaraan menu';
-      // $data['nama'] = $this->model('User_model')->getUser();
+      $data['lokasi'] = $this->model('Lokasi_model')->getAllLokasi();
+      $data['tipe'] = $this->model('Tipemobil_model')->getAllTipe();
+      $data['spesifikasi'] = $this->model('Spesifikasi_model')->getAllSpesifikasi();
+      $data['mobil'] = $this->model('Mobil_model')->getAllMobil();
       $this->view('templates/header_admin', $data);
       $this->view('admin/kendaraan', $data);
       $this->view('templates/footer_admin');
     }
+    public function tambahMobil()
+    {
+      // var_dump($_POST); die;
+      if(isset($_POST['tambah'])){
+			$nama = $_FILES['image']['name'];
+			$ukuran	= $_FILES['image']['size'];
+			$image   = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+				if($ukuran < 1044070){
+					  // move_uploaded_file($file_tmp, 'assets/img/profil/'.$nama);
+            if( $this->model('Mobil_model')->tambahDataMobil($_POST,$image) > 0 ) {
+                  Flasher::setFlash('mobil berhasil', 'ditambahkan', 'success');
+                  header('Location: ' . BASEURL . '/admin/kendaraan');
+                  exit;
+              } else {
+                  Flasher::setFlash('mobil gagal', 'ditambahkan', 'danger');
+                  header('Location: ' . BASEURL . '/admin/kendaraan');
+                  exit;
+              }
+  				}else{
+            Flasher::setFlash('ukuran file', 'terlalu besar', 'danger');
+            header('Location: ' . BASEURL . '/daftar');
+            exit;
+  				}
+  		}
+
+    }
+
+
+
+
+
+
+
+
+
+
+    ///umum
 
     public function logout()
     {
