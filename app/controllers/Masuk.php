@@ -24,7 +24,7 @@ class Masuk extends Controller {
           $result = $this->model('Akun_model')->getAkunByEmailOrUsername($masukan);
           //Verifikasi Email & Password
           if($masukan == $result['email']){
-              if($pass == $result['password']){
+              if(md5($pass) == $result['password']){
                   $_SESSION['id'] = $result['id'];
                   $_SESSION['level'] = $result['role'];
                   echo 'login sukses';
@@ -36,7 +36,7 @@ class Masuk extends Controller {
 
               }
           }else if($masukan == $result['username']){
-              if($pass == $result['password']){
+              if(md5($pass) == $result['password']){
                   $_SESSION['id'] = $result['id'];
                   $_SESSION['level'] = $result['role'];
                   echo 'login sukses';

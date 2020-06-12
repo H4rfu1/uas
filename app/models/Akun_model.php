@@ -26,12 +26,12 @@ class Akun_model {
     {
         $query = "INSERT INTO akun
                     VALUES
-                  ('', 2, :username, :email, :password, :nm_dpan, :nm_blakang, :no_ktp, :image)";
+                  ('', 2, 'aktif', :username, :email, :password, :nm_dpan, :nm_blakang, :no_ktp, :image)";
 
         $this->db->query($query);
         $this->db->bind('username', $data['username']);
         $this->db->bind('email', $data['email']);
-        $this->db->bind('password', $data['password']);
+        $this->db->bind('password', md5($data['password']));
         $this->db->bind('nm_dpan', $data['nm_dpan']);
         $this->db->bind('nm_blakang', $data['nm_blakang']);
         $this->db->bind('no_ktp', $data['no_ktp']);
