@@ -38,8 +38,15 @@ class Masuk extends Controller {
           }else if($masukan == $result['username']){
               if(md5($pass) == $result['password']){
                   $_SESSION['id'] = $result['id'];
-                  $_SESSION['level'] = $result['role'];
-                  echo 'login sukses';
+                  if($result['role'] == 1){
+                    $_SESSION['role'] = 1;
+                    header('Location: ' . BASEURL . '/admin');
+                    exit;
+                  }else{
+                    $_SESSION['role'] = 2;
+                    header('Location: ' . BASEURL . '/profil');
+                    exit;
+                  }
               }else{
                 Flasher::setFlash('password', 'yang anda masukan salah', 'danger');
                 header('Location: ' . BASEURL . '/masuk');

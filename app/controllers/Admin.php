@@ -34,5 +34,14 @@ class Admin extends Controller {
       $this->view('templates/footer_admin');
     }
 
+    public function logout()
+    {
+      session_start();
+       // menghapus semua session
+      session_destroy();
+       // mengalihkan halaman ke halaman login
+      header('Location: ' . BASEURL . '/');
+    }
+
 
 }

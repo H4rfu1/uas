@@ -1,3 +1,12 @@
+<?php
+if(!isset($_SESSION)){
+  session_start();
+}
+	// cek apakah yang mengakses halaman ini sudah login
+	if(!($_SESSION['role']== 1)){
+		header('Location: ' . BASEURL . '/masuk');
+	}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
